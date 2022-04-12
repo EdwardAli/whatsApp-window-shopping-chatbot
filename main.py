@@ -37,7 +37,7 @@ def dataStr():
 @app.route('/')
 def index():
      return "window shoping whatsapp chatbot running"
-@app.route('/bot', methods=['GET','POST'])
+@app.route('/bot', methods=['POST'])
 
 
 def bot():
