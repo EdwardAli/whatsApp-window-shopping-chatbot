@@ -1,16 +1,8 @@
-#from crypt import methods
-from operator import attrgetter
-from itertools import product
 import os
-from unicodedata import name
-from unittest import result
-from urllib import parse
-from webbrowser import get
-from flask import Flask, request, session, json , render_template
+from flask import Flask, request, session, json 
 import requests
 from twilio.twiml.messaging_response import MessagingResponse
 
-# from tabulate import tabulate
 
 
 SECRET_KEY = os.urandom(16)
@@ -34,10 +26,10 @@ def dataStr():
 
 
 
-@app.route('/',methods=['GET'])
+@app.route('/')
 def index():
      return "window shoping whatsapp chatbot running"
-@app.route('/bot', methods=['GET','POST'])
+@app.route('/bot', methods=['POST'])
 
 
 def bot():
