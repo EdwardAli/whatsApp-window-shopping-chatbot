@@ -46,6 +46,8 @@ def bot():
     msg = bot_resp.message()
 
     r = requests.get('https://windowshoppingserver.herokuapp.com/product/All')
+
+    shop = requests.get('https://windowshoppingserver.herokuapp.com/shop/All').json()
     # print(r)
     data1 = r.json()
 
@@ -63,7 +65,13 @@ def bot():
             msg.body("""Hi there ! am window shopping bot. How may I help you? \n\n1. To find out about the shops available reply to this massege with 'shop' \n\n2. To find out about the product you want  reply to this massege with 'NAME OF PRODUCT'""")
         
         elif "who" in user_msg:
+            print(shop)
             msg.body('   I am being  created by Edward Ali and william Pharaoh ')
+
+           # geting all shops
+        # elif 'o' in user_msg:
+        #     print(shop)
+        #     msg.body('shop')
         
         elif "help" in user_msg:
 
@@ -71,6 +79,7 @@ def bot():
         
         elif "groceries" in user_msg:
              msg.body(dataStr())
+
      
 
     
@@ -111,6 +120,8 @@ def bot():
 
         elif not filtered_arr:
              msg.body("Sorry, I didn't get what you have said! You can access the following services.\n 1.Available shops typing shops.\n 2.Available product by typing name of the product\n")
+        
+       
    
        
        
