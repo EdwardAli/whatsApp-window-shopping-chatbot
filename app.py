@@ -10,7 +10,7 @@ SECRET_KEY = os.urandom(16)
 ## Init Flask APp
 app = Flask(__name__)
 
-
+# geting all products
 def dataStr():
     base_url = 'https://windowshoppingserver.herokuapp.com/product/All'
     data = requests.get(base_url).json()
@@ -22,6 +22,19 @@ def dataStr():
         print(dat)
 
     return dat
+
+# getting all registered shops 
+def allshops():
+    base_url = 'https://windowshoppingserver.herokuapp.com/shop/All'
+    shop = requests.get(base_url).json()
+    # print(data)
+    sho = 'name location\n\n'
+
+    for s in shop:
+        sho =sho+ f'{s["shopName"]} {s["location"]}\n'
+        print(sho)
+
+    return sho
 
 
 
@@ -68,10 +81,6 @@ def bot():
             print(shop)
             msg.body('   I am being  created by Edward Ali and william Pharaoh ')
 
-           # geting all shops
-        # elif 'o' in user_msg:
-        #     print(shop)
-        #     msg.body('shop')
         
         elif "help" in user_msg:
 
@@ -80,6 +89,13 @@ def bot():
         elif "groceries" in user_msg:
              msg.body(dataStr())
 
+   # geting all shops
+    elif 'shop' in user_msg:
+
+        # for s in shop:
+        #      sho = f'{s["shopName"]} {s["location"]}'
+        # print(sho)
+        msg.body(allshops())
      
 
     
