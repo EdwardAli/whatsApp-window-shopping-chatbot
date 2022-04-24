@@ -27,19 +27,32 @@ def dataStr():
 def allshops():
     base_url = 'https://windowshoppingserver.herokuapp.com/shop/All'
     shop = requests.get(base_url).json()
-    # print(data)
-    sho = 'name location\n\n'
+    sho = 'name   location\n\n'
 
     for s in shop:
         sho =sho+ f'{s["shopName"]} {s["location"]}\n'
-        print(sho)
 
     return sho
+
+# shops and products
+def productsbyShop():
+    shop_url = 'https://windowshoppingserver.herokuapp.com/shop/All'
+    shops = requests.get(shop_url).json()
+    product_url = 'https://windowshoppingserver.herokuapp.com/product/All'
+    productS = requests.get(product_url).json()
+
+    if shops['shopName'] == productS.Shop:
+        shopproducts = 'shopName \n\n'
+        for pro in productS:
+            allforshop = pro['Name']
+            return allforshop
+
 
 
 
 
 @app.route('/')
+
 def index():
      return "window shoping whatsapp chatbot running"
 @app.route('/bot', methods=['POST'])
@@ -78,7 +91,7 @@ def bot():
             msg.body("""Hi there ! am window shopping bot. How may I help you? \n\n1. To find out about the shops available reply to this massege with 'shop' \n\n2. To find out about the product you want  reply to this massege with 'NAME OF PRODUCT'""")
         
         elif "who" in user_msg:
-            print(shop)
+            print(productsbyShop())
             msg.body('   I am being  created by Edward Ali and william Pharaoh ')
 
         
