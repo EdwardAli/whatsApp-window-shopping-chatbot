@@ -46,7 +46,7 @@ def bot():
     msg = bot_resp.message()
 
     r = requests.get('https://windowshoppingserver.herokuapp.com/product/All')
-    print(r)
+    # print(r)
     data1 = r.json()
 
     mother=[]
