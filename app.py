@@ -41,7 +41,7 @@ def productsbyShop():
     product_url = 'https://windowshoppingserver.herokuapp.com/product/All'
     productS = requests.get(product_url).json()
 
-    if shops['shopName'] == productS.Shop:
+    if shops["shopName"] == productS["Shop"]:
         shopproducts = 'shopName \n\n'
         for pro in productS:
             allforshop = pro['Name']
