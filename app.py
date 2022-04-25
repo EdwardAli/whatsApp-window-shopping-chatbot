@@ -163,17 +163,17 @@ def bot():
 
         
         # for shop 
-        elif filteredShop_arr:
+        
+        elif shopMother:
+            dtr = 'Name     quantity  price\n\n'
 
             sortedShop=sorted(filteredShop_arr, key=lambda x: x['Shop'])
-
-           
-
+            
             for w in sortedShop:
-                dtr = 'Name     quantity  price   \n'
-                dtr =dtr+ f'{w["Name"]} {w["Quantity"]} {w["Price"]} \n'
+                
+                dtr = dtr +  f'{w["Name"]} {w["Quantity"]} {w["Price"]}\n'
 
-                msg.body(dtr)
+            msg.body(dtr)
 
                 # checking products for a given shop
 
