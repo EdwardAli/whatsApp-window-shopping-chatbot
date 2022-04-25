@@ -80,7 +80,7 @@ def bot():
     # for shops
     shopMother =[]
     for Y in shop:
-            shopName=Y['Name']
+        shopName=Y['Name']
             shopMother.append(shopName)
 
 
@@ -132,8 +132,10 @@ def bot():
         # r = requests.get('https://windowshoppingserver.herokuapp.com/product/All')
             if X in mother:
                 filtered_arr.extend([p for p in data1 if p['Name'] ==X])
-            else X in shopMother:
-                filteredShop_arr.extend([s for s ])
+
+            # for shop
+            elif X in shopMother:
+                filteredShop_arr.extend([s for s in shop if s['shopName'] ==X])
         #data1 = r.json()
         if filtered_arr:
             print("filtered array is")
@@ -155,6 +157,14 @@ def bot():
                 datr =datr+ f'{product["Name"]}       {product["Price"]}        {product["Description"]}      {product["Quantity"]}        {product["Shop"]}\n'
             
             msg.body(datr)
+
+        
+        # for shop 
+        elif filteredShop_arr:
+            print("filteredshop array is")
+            print(filteredShop_arr)
+
+
 
 
         elif not filtered_arr:
