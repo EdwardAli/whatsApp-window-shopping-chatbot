@@ -77,6 +77,14 @@ def bot():
     # print(r)
     data1 = r.json()
 
+    # for shops
+    shopMother =[]
+    for Y in shop:
+            shopName=Y['Name']
+            shopMother.append(shopName)
+
+
+    # for products
     mother=[]
     for X in data1:
             pname=X['Name']
@@ -110,16 +118,56 @@ def bot():
         # print(sho)
         msg.body(allshops())
      
-
-    
     # filter user input
    
         
     elif user_msg not in basics:
+        # for shops
+        filteredShop_arr=[]
+
+        # for products
         filtered_arr=[]
         splitText=user_msg.split()
         for X in splitText:
         # r = requests.get('https://windowshoppingserver.herokuapp.com/product/All')
+            if X in mother:
+                filtered_arr.extend([p for p in data1 if p['Name'] ==X])
+            else X in shopMother:
+                filteredShop_arr.extend([s for s ])
+        #data1 = r.json()
+        if filtered_arr:
+            print("filtered array is")
+            print(filtered_arr)
+            #sortedByPrice=filtered_arr.sort(key=lambda x: x["Quantity"], reverse=True)
+            sortedByPrice=sorted(filtered_arr, key=lambda x: x['Price'], reverse=False)
+            print("sorrted by price in ascending order")
+            print(sortedByPrice)
+            lowestThree=sortedByPrice[:3]
+            print("lowest 3")
+            print(lowestThree)
+
+            #base_url = 'https://windowshoppingserver.herokuapp.com/product/All'
+            firstThree = lowestThree
+            # Printing firstThree
+            datr = 'name     price       description     quantity        Shop\n\n'
+
+            for product in firstThree:
+                datr =datr+ f'{product["Name"]}       {product["Price"]}        {product["Description"]}      {product["Quantity"]}        {product["Shop"]}\n'
+            
+            msg.body(datr)
+
+
+        elif not filtered_arr:
+             msg.body("Sorry, I didn't get what you have said! You can access the following services.\n 1.Available shops typing shops.\n 2.Available product by typing name of the product\n")
+
+
+# find shops and the products 
+
+    elif user_msg not in basics:
+        filtered_arr=[]
+        splitText=user_msg.split()
+        for X in splitText:
+
             if X in mother:
                 filtered_arr.extend([p for p in data1 if p['Name'] ==X])
         #data1 = r.json()
@@ -149,7 +197,7 @@ def bot():
 
         elif not filtered_arr:
              msg.body("Sorry, I didn't get what you have said! You can access the following services.\n 1.Available shops typing shops.\n 2.Available product by typing name of the product\n")
-        
+     
        
    
        
