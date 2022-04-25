@@ -167,15 +167,24 @@ def bot():
 
             sortedShop=sorted(filteredShop_arr, key=lambda x: x['id'])
 
-
+            # dtr= 'this is shop  '
             for w in sortedShop:
+                dtr = f'{w["id"]}'
 
+                # checking products for a given shop
+
+                if dtr == data1[shop]:
+                    for x in data1:
+                        p = f'{x["name"]}'
 
            
             
             print("filteredshop array is")
             print(sortedShop)
             msg.body(dtr)
+
+            print("p name on shop")
+            print(p)
 
 
 
