@@ -124,6 +124,8 @@ def bot():
     elif user_msg not in basics:
         # for shops
         filteredShop_arr=[]
+        # arr of final 
+        final_arr =[]
 
         # for products
         filtered_arr=[]
@@ -131,8 +133,8 @@ def bot():
         for X in splitText:
 
             if X in mother:
-
-                # filtered_arr.extend([p for p in data1 if p['Name'] ==X])
+                
+                filtered_arr.extend([p for p in data1 if p['Name'] ==X])
 
             # for shop
             elif X in shopMother:
