@@ -65,7 +65,7 @@ def bot():
     counter = session.get('counter', 0)
 
     # get the message from the user 
-    user_msg = request.values.get('Body', '')
+    user_msg = request.values.get('Body', '').lower()
 
     ## Init the response
     bot_resp= MessagingResponse()
@@ -111,7 +111,7 @@ def bot():
              msg.body(dataStr())
 
    # geting all shops
-    elif 'shop' in user_msg:
+    elif 'shops' in user_msg:
 
         # for s in shop:
         #      sho = f'{s["shopName"]} {s["location"]}'
@@ -164,9 +164,11 @@ def bot():
         
         # for shop 
         elif filteredShop_arr:
+
+            sortedShop=sorted(filteredShop_arr, key=lambda x: x['id'])
             
             print("filteredshop array is")
-            print(filteredShop_arr)
+            print(sortedShop)
 
 
 
