@@ -135,7 +135,7 @@ def bot():
 
             # for shop
             elif X in shopMother:
-                filteredShop_arr.extend([s for s in shop if s['shop'] ==X])
+                filteredShop_arr.extend([s for s in data1 if s['Shop'] ==X])
     
         if filtered_arr:
             # print("filtered array is")
@@ -167,29 +167,25 @@ def bot():
 
             sortedShop=sorted(filteredShop_arr, key=lambda x: x['Shop'])
 
-            # dtr= 'this is shop  '
-            listShop =[]
-            for x in data1:
-                shopnaa=X['Name']
-                listShop.append(shopnaa)
+           
 
             for w in sortedShop:
-                dtr = f'{w["Shop"]}'
+                dtr = 'Name     quantity  price   \n'
+                dtr =dtr+ f'{w["Name"]} {w["Quantity"]} {w["Price"]} \n'
+
+                msg.body(dtr)
 
                 # checking products for a given shop
 
-                if dtr == data1:
-                    for x in data1:
-                        p = f'{x["name"]}'
 
            
             
             print("filteredshop array is")
             print(sortedShop)
-            msg.body(dtr)
+            
 
             print("p name on shop")
-            print(p)
+            # print(p)
 
 
 
