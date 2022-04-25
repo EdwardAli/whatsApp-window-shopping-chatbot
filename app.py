@@ -131,7 +131,8 @@ def bot():
         for X in splitText:
 
             if X in mother:
-                filtered_arr.extend([p for p in data1 if p['Name'] ==X])
+
+                # filtered_arr.extend([p for p in data1 if p['Name'] ==X])
 
             # for shop
             elif X in shopMother:
@@ -165,13 +166,13 @@ def bot():
         # for shop 
         
         elif shopMother:
-            dtr = 'Name     quantity  price\n\n'
+            dtr = 'Name     quantity  price\n'
 
             sortedShop=sorted(filteredShop_arr, key=lambda x: x['Shop'])
             
             for w in sortedShop:
                 
-                dtr = dtr +  f'{w["Name"]} {w["Quantity"]} {w["Price"]}\n'
+                dtr = dtr +  f'{w["Name"]}     {w["Quantity"]}      {w["Price"]}\n'
 
             msg.body(dtr)
 
