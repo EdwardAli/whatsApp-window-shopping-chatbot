@@ -80,8 +80,8 @@ def bot():
     # for shops
     shopMother =[]
     for Y in shop:
-        shopName=Y['Name']
-            shopMother.append(shopName)
+        shopName=Y['shopName']
+        shopMother.append(shopName)
 
 
     # for products
@@ -136,17 +136,20 @@ def bot():
             # for shop
             elif X in shopMother:
                 filteredShop_arr.extend([s for s in shop if s['shopName'] ==X])
-        #data1 = r.json()
+    
         if filtered_arr:
-            print("filtered array is")
-            print(filtered_arr)
+            # print("filtered array is")
+            # print(filtered_arr)
             #sortedByPrice=filtered_arr.sort(key=lambda x: x["Quantity"], reverse=True)
             sortedByPrice=sorted(filtered_arr, key=lambda x: x['Price'], reverse=False)
-            print("sorrted by price in ascending order")
-            print(sortedByPrice)
+            # print("sorrted by price in ascending order")
+            # print(sortedByPrice)
             lowestThree=sortedByPrice[:3]
-            print("lowest 3")
-            print(lowestThree)
+            # print("lowest 3")
+            # print(lowestThree)
+
+            # print("filteredshop array is")
+            # print(filteredShop_arr)
 
             #base_url = 'https://windowshoppingserver.herokuapp.com/product/All'
             firstThree = lowestThree
