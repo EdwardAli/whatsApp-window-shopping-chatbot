@@ -65,7 +65,7 @@ def bot():
     counter = session.get('counter', 0)
 
     # get the message from the user 
-    user_msg = request.values.get('Body', '').lower()
+    user_msg = request.values.get('Body', '')
 
     ## Init the response
     bot_resp= MessagingResponse()
@@ -129,7 +129,7 @@ def bot():
         filtered_arr=[]
         splitText=user_msg.split()
         for X in splitText:
-            
+
             if X in mother:
                 filtered_arr.extend([p for p in data1 if p['Name'] ==X])
 
@@ -164,6 +164,7 @@ def bot():
         
         # for shop 
         elif filteredShop_arr:
+            
             print("filteredshop array is")
             print(filteredShop_arr)
 
