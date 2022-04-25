@@ -166,9 +166,16 @@ def bot():
         elif filteredShop_arr:
 
             sortedShop=sorted(filteredShop_arr, key=lambda x: x['id'])
+
+
+            for w in sortedShop:
+
+
+           
             
             print("filteredshop array is")
             print(sortedShop)
+            msg.body(dtr)
 
 
 
