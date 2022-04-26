@@ -102,7 +102,7 @@ def bot():
         
         elif "help" in user_msg:
 
-            msg.body('help Line \n ! You can access the following services.\n 1.Available shops typing shops.\n 2.Available product by typing name of the product\n 3. type shop name to access products in that shop\n')
+            msg.body('help Line \n You can access the following services.\n 1.Available shops typing shops.\n 2.Available product by typing name of the product\n 3. type shop name to access products in that shop\n')
         
         # elif "groceries" in user_msg:
         #     msg.body(dataStr())
