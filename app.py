@@ -14,7 +14,7 @@ app = Flask(__name__)
 def dataStr():
     base_url = 'https://windowshoppingserver.herokuapp.com/product/All'
     data = requests.get(base_url).json()
-    # print(data)
+    
     dat = 'name     price       description     quantity        Shop\n\n'
 
     for product in data:
@@ -27,10 +27,10 @@ def dataStr():
 def allshops():
     base_url = 'https://windowshoppingserver.herokuapp.com/shop/All'
     shop = requests.get(base_url).json()
-    sho = 'name   location\n\n'
+    sho = 'name   location   call\n\n'
 
     for s in shop:
-        sho =sho+ f'{s["shopName"]} {s["location"]}\n'
+        sho =sho+ f'{s["shopName"]}   {s["location"]}   {s["phoneNumber"]}\n'
 
     return sho
 
@@ -46,9 +46,6 @@ def productsbyShop():
         for pro in productS:
             allforshop = pro['Name']
             return allforshop
-
-
-
 
 
 @app.route('/')
@@ -113,19 +110,17 @@ def bot():
    # geting all shops
     elif 'shops' in user_msg:
 
-        # for s in shop:
-        #      sho = f'{s["shopName"]} {s["location"]}'
-        # print(sho)
         msg.body(allshops())
      
     # filter user input
    
         
     elif user_msg not in basics:
-        # for shops
+
+        # checking if the shop name is in user massage
         filteredShop_arr=[]
 
-        # for products
+        # checking if the product name is in user massage
         filtered_arr=[]
         splitText=user_msg.split()
         for X in splitText:
@@ -139,19 +134,14 @@ def bot():
                 filteredShop_arr.extend([s for s in data1 if s['Shop'] ==X])
     
         if filtered_arr:
-            
+
+            # sorrted by price in ascending order
             sortedByPrice=sorted(filtered_arr, key=lambda x: x['Price'], reverse=False)
-            # print("sorrted by price in ascending order")
-            # print(sortedByPrice)
+            
+            # geting the lowest 3
             lowestThree=sortedByPrice[:3]
-            # print("lowest 3")
-            # print(lowestThree)
-
-            # print("filteredshop array is")
-            # print(filteredShop_arr)
-
-            #base_url = 'https://windowshoppingserver.herokuapp.com/product/All'
             firstThree = lowestThree
+
             # Printing firstThree
             datr = 'name     price       description     quantity        Shop\n\n'
 
@@ -163,16 +153,17 @@ def bot():
         
         # for shop 
         
-        elif shopMother:
-            dtr = 'Name     quantity  price\n'
+        if filteredShop_arr:
+            dtr ='Name     quantity  price\n'
 
             sortedShop=sorted(filteredShop_arr, key=lambda x: x['Shop'])
             
             for w in sortedShop:
-                
-                dtr = dtr +  f'{w["Name"]}     {w["Quantity"]}      {w["Price"]}\n'
+        
+                dtr = dtr +  f'{w["Name"]}       {w["Quantity"]}       {w["Price"]}\n'
 
             msg.body(dtr)
+        
 
                 # checking products for a given shop
 
@@ -184,19 +175,14 @@ def bot():
             
 
             print("p name on shop")
-            # print(p)
+            print(shopMother)
 
 
 
 
         elif not filtered_arr:
-             msg.body("Sorry, I didn't get what you have said! You can access the following services.\n 1.Available shops typing shops.\n 2.Available product by typing name of the product\n")
+             msg.body("Sorry, the product you are trying to find is not available \n\n ! You can access the following services.\n 1.Available shops typing shops.\n 2.Available product by typing name of the product\n")
 
-
-# find shops and the products 
-
-     
-       
    
        
        
