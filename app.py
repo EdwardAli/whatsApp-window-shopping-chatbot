@@ -19,7 +19,7 @@ def dataStr():
 
     for product in data:
         dat =dat+ f'{product["Name"]}       {product["Price"]}        {product["Description"]}      {product["Quantity"]}        {product["Shop"]}\n'
-        print(dat)
+        # print(dat)
 
     return dat
 
@@ -96,16 +96,17 @@ def bot():
             msg.body("""Hi there ! am window shopping bot. How may I help you? \n\n1. To find out about the shops available reply to this massege with 'shop' \n\n2. To find out about the product you want  reply to this massege with 'NAME OF PRODUCT'""")
         
         elif "who" in user_msg:
-            print(productsbyShop())
+            # print(productsbyShop())
             msg.body('   I am being  created by Edward Ali and william Pharaoh ')
 
         
         elif "help" in user_msg:
 
-            msg.body('help Line \n 1.Search for the product by typing the NAME of product \n 2.Type GROCERIES to get all the latest available products \n 3.Type HELP to go to the help line menu')
+            msg.body('help Line \n 1.Search for the product by typing the NAME of product \n 2.Type shop name to get all the latest available products in that shop \n 3.Type HELP to go to the help line menu')
         
-        elif "groceries" in user_msg:
-             msg.body(dataStr())
+        # elif "groceries" in user_msg:
+        #     msg.body(dataStr())
+           
 
    # geting all shops
     elif 'shops' in user_msg:
@@ -170,18 +171,18 @@ def bot():
 
            
             
-            print("filteredshop array is")
-            print(sortedShop)
+            # print("filteredshop array is")
+            # print(sortedShop)
             
 
-            print("p name on shop")
-            print(shopMother)
+            # print("p name on shop")
+            # print(shopMother)
 
 
 
 
         elif not filtered_arr:
-             msg.body("Sorry, the product you are trying to find is not available \n\n ! You can access the following services.\n 1.Available shops typing shops.\n 2.Available product by typing name of the product\n")
+             msg.body("Sorry, what you are trying to find is not available \n\n ! You can access the following services.\n 1.Available shops typing shops.\n 2.Available product by typing name of the product\n 3. type shop name to access products in that shop\n 4. for help type 'help' ")
 
    
        
