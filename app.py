@@ -27,7 +27,7 @@ def dataStr():
 def allshops():
     base_url = 'https://windowshoppingserver.herokuapp.com/shop/All'
     shop = requests.get(base_url).json()
-    sho = 'name   location   call\n\n'
+    sho = 'name   location   phonenumber\n\n'
 
     for s in shop:
         sho =sho+ f'{s["shopName"]}   {s["location"]}   {s["phoneNumber"]}\n'
