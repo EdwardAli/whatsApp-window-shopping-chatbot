@@ -79,8 +79,8 @@ def bot():
 
     # for shops
     shopMother =[]
-    for Y in data1:
-        shopName=Y['Shop']
+    for Y in shop:
+        shopName=Y['shopName']
         shopMother.append(shopName)
 
 
@@ -89,6 +89,7 @@ def bot():
     for X in data1:
             pname=X['Name']
             mother.append(pname)
+    #make sure to backup before making terrible changes 
         
 
     basics=["hello","hie","hy","sup","who","help","groceries"]
@@ -124,8 +125,6 @@ def bot():
     elif user_msg not in basics:
         # for shops
         filteredShop_arr=[]
-        # arr of final 
-        final_arr =[]
 
         # for products
         filtered_arr=[]
@@ -133,14 +132,36 @@ def bot():
         for X in splitText:
 
             if X in mother:
-                
                 filtered_arr.extend([p for p in data1 if p['Name'] ==X])
 
             # for shop
             elif X in shopMother:
-                filteredShop_arr.extend([s for s in data1 if s['Shop'] ==X])
+                filteredShop_arr.extend([s for s in shop if s['shopName'] ==X])
     
-        if filtered_arr:
+        if filtered_arr and filteredShop_arr:
+            #NEW LOGIC STARTS HERE ,YOU CAN DELETE THIS PART IF NOT WORKING
+            #defining new arrary called finalProducts
+            #the array has been defined in this local block if you want it to be global define it on top
+            finalProducts=[]
+            #productNames carry all products found in filtered_arr
+            productNames=[]
+            for X in filtered_arr:
+                name=X['Name']
+                productNames.append(name)
+            
+            #Now we have names of all products found in filtered_arr
+            #rememer if user sends sobo and shoprite  productsNames will only have sobo
+            #Now we need to pull all products from filteredshop_arr that have names found in productNames
+            for X  in productNames:
+                finalProducts.append([p for p in filteredShop_arr if p['Name']==X])
+            
+            #NOW FINALPRODUCTS SHOULD CONTAIN ALL PRODUCTS FOUND IN PRODUCTNAMES AND IN SHOPS FOUND IN FILTEREDSHOP_ARR
+            
+
+
+            #ORIGINAL CODE STARTS HERE
+
+
             # print("filtered array is")
             # print(filtered_arr)
             #sortedByPrice=filtered_arr.sort(key=lambda x: x["Quantity"], reverse=True)
@@ -166,29 +187,12 @@ def bot():
 
         
         # for shop 
-        
-        elif shopMother:
-            dtr = 'Name     quantity  price\n'
+        elif filteredShop_arr:
 
-            sortedShop=sorted(filteredShop_arr, key=lambda x: x['Shop'])
-            
-            for w in sortedShop:
-                
-                dtr = dtr +  f'{w["Name"]}     {w["Quantity"]}      {w["Price"]}\n'
-
-            msg.body(dtr)
-
-                # checking products for a given shop
-
-
-           
+            sortedShop=sorted(filteredShop_arr, key=lambda x: x['id'])
             
             print("filteredshop array is")
             print(sortedShop)
-            
-
-            print("p name on shop")
-            # print(p)
 
 
 
