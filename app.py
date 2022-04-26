@@ -93,7 +93,7 @@ def bot():
     # Applying bot logic
     if  user_msg in basics:
         if user_msg in ("hello","hie","hy","sup"):
-            msg.body("""Hi there ! am window shopping bot. How may I help you? \n\n1. To find out about the shops available reply to this massege with 'shop' \n\n2. To find out about the product you want  reply to this massege with 'NAME OF PRODUCT'""")
+            msg.body("""Hi there ! am window shopping bot. How may I help you? \n\n! You can access the following services.\n 1.Available shops typing shops.\n 2.Available product by typing name of the product\n 3. type shop name to access products in that shop\n 4. for help type 'help'""")
         
         elif "who" in user_msg:
             # print(productsbyShop())
@@ -102,7 +102,7 @@ def bot():
         
         elif "help" in user_msg:
 
-            msg.body('help Line \n 1.Search for the product by typing the NAME of product \n 2.Type shop name to get all the latest available products in that shop \n 3.Type HELP to go to the help line menu')
+            msg.body('help Line \n ! You can access the following services.\n 1.Available shops typing shops.\n 2.Available product by typing name of the product\n 3. type shop name to access products in that shop\n')
         
         # elif "groceries" in user_msg:
         #     msg.body(dataStr())
